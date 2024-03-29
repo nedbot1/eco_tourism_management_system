@@ -13,7 +13,7 @@ export default function Home() {
           type="button"
           onClick={() => router.push("/pages/login")}
         >
-          WELLCOME
+          WELLCOME long
         </button>
       </div>
     </div>
