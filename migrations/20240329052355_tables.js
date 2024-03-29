@@ -1,62 +1,71 @@
 exports.up = function (knex) {
   return knex.schema
-    .createTable("Users", function (table) {
-      table.increments("UserID").primary();
-      table.string("Username").unique().notNullable();
-      table.string("Password").notNullable(); // Assuming hashed password
-      table.string("Email").unique().notNullable();
-      table.enum("UserType", ["tourist"]).defaultTo("tourist").notNullable();
+    .createTable("users", function (table) {
+      table.increments("user_id").primary();
+      table.string("username").unique().notNullable();
+      table.string("salt", 32).notNullable();
+      table.string("hash_password", 128).notNullable();
+      table.string("email").unique().notNullable();
+      table.enum("user_type", ["tourist"]).defaultTo("tourist").notNullable();
     })
-    .createTable("TourPackages", function (table) {
-      table.increments("PackageID").primary();
-      table.string("Title").notNullable();
-      table.text("Description");
-      table.integer("Duration").notNullable(); // Duration in days
-      table.decimal("Price", 10, 2).notNullable();
-      table.string("Location").notNullable();
+    .createTable("tour_packages", function (table) {
+      table.increments("package_id").primary();
+      table.string("title").notNullable();
+      table.text("description");
+      table.integer("duration").notNullable();
+      table.decimal("price", 10, 2).notNullable();
+      table.string("location").notNullable();
     })
-    .createTable("Bookings", function (table) {
-      table.increments("BookingID").primary();
-      table.integer("UserID").unsigned().references("UserID").inTable("Users");
+    .createTable("bookings", function (table) {
+      table.increments("booking_id").primary();
       table
-        .integer("PackageID")
+        .integer("user_id")
         .unsigned()
-        .references("PackageID")
-        .inTable("TourPackages");
-      table.date("BookingDate").notNullable();
-      table.decimal("TotalPrice", 10, 2).notNullable();
+        .references("user_id")
+        .inTable("users");
       table
-        .enum("Status", ["pending", "confirmed", "cancelled"])
+        .integer("package_id")
+        .unsigned()
+        .references("package_id")
+        .inTable("tour_packages");
+      table.date("booking_date").notNullable();
+      table.decimal("total_price", 10, 2).notNullable();
+      table
+        .enum("status", ["pending", "confirmed", "cancelled"])
         .defaultTo("pending")
         .notNullable();
     })
-    .createTable("Accommodations", function (table) {
-      table.increments("AccommodationID").primary();
-      table.string("Name").notNullable();
-      table.string("Location").notNullable();
-      table.text("Description");
-      table.decimal("Price", 10, 2).notNullable();
-      table.integer("Capacity").notNullable();
+    .createTable("accommodations", function (table) {
+      table.increments("accommodation_id").primary();
+      table.string("name").notNullable();
+      table.string("location").notNullable();
+      table.text("description");
+      table.decimal("price", 10, 2).notNullable();
+      table.integer("capacity").notNullable();
     })
-    .createTable("Reviews", function (table) {
-      table.increments("ReviewID").primary();
-      table.integer("UserID").unsigned().references("UserID").inTable("Users");
+    .createTable("reviews", function (table) {
+      table.increments("review_id").primary();
       table
-        .integer("PackageID")
+        .integer("user_id")
         .unsigned()
-        .references("PackageID")
-        .inTable("TourPackages");
-      table.integer("Rating").notNullable(); // Rating out of 5
-      table.text("Comment");
-      table.date("ReviewDate").notNullable();
+        .references("user_id")
+        .inTable("users");
+      table
+        .integer("package_id")
+        .unsigned()
+        .references("package_id")
+        .inTable("tour_packages");
+      table.integer("rating").notNullable(); // Rating out of 5
+      table.text("comment");
+      table.date("reviewDate").notNullable();
     });
 };
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists("Reviews")
-    .dropTableIfExists("Accommodations")
-    .dropTableIfExists("Bookings")
-    .dropTableIfExists("TourPackages")
-    .dropTableIfExists("Users");
+    .dropTableIfExists("reviews")
+    .dropTableIfExists("accommodations")
+    .dropTableIfExists("bookings")
+    .dropTableIfExists("tour_packages")
+    .dropTableIfExists("users");
 };
