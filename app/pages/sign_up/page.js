@@ -19,7 +19,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("/api/signup", {
+      const response = await fetch("/api/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const SignUp = () => {
         body: JSON.stringify({
           userName: userName,
           email: email,
-          password: password,
+          passWord: password,
         }),
       });
 
@@ -35,7 +35,7 @@ const SignUp = () => {
         throw new Error("Sign up failed");
       }
 
-      router.push("/login");
+      router.push("/pages/login");
     } catch (error) {
       setSignupError("Sign up failed. Please try again.");
       console.error("Error:", error);
@@ -128,7 +128,7 @@ const SignUp = () => {
             </button>
             <div className="text-center text-black flex align-middle justify-center">
               <h1>
-                Already have an account? <a href="/login">Login</a>
+                Already have an account? <a href="/pages/login">Login</a>
               </h1>
             </div>
           </div>

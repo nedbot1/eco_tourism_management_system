@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/user_login", {
+      const response = await fetch("/api/users/userlogin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const Login = () => {
             </button>
             <div className="text-center text-black flex align-middle justify-center">
               <h1>
-                dont have a account <a href="/pages/signUp">SIGN UP</a>
+                dont have a account <a href="/pages/sign_up">SIGN UP</a>
               </h1>
             </div>
           </div>
