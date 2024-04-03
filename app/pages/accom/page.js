@@ -1,64 +1,89 @@
 "use client";
-import { useRouter } from "next/navigation";
+
 import { useState } from "react";
 
-export default function Home() {
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    name: "",
-    location: "",
-    description: "",
-    price: 0,
-    capacity: 0,
-  });
+export default function Accommodation() {
+  const [accommodations, setAccommodations] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("/api/tour_packages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    if (response.ok) {
-      router.push("/success");
+  const fetchAccommodations = async () => {
+    try {
+      const response = await fetch("/api/accom", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch accommodations");
+      }
+
+      const data = await response.json();
+      console.log("Data from API:", data);
+
+      if (Array.isArray(data.accmo)) {
+        setAccommodations(data.accmo);
+      } else {
+        throw new Error("Accommodations data is not an array");
+      }
+    } catch (error) {
+      console.error("Error fetching accommodations:", error);
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <form className="w-full" onSubmit={handleSubmit}>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Name
-        </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        {/* Add similar input fields for other form fields */}
-        <button
-          type="submit"
-          className="mt-4 w-full inline-flex items-center justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Submit
-        </button>
-      </form>
+    <div>
+      <div className="my-auto flex justify-center space-x-4">
+        <div className="max-w-md w-full mt-5">
+          <button
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            type="button"
+            onClick={fetchAccommodations}
+          >
+            ACCOMMODATIONS
+          </button>
+        </div>
+      </div>
+
+      {/* Display accommodations */}
+      {accommodations.length > 0 && (
+        <div className="text-white mt-4">
+          <ul>
+            {accommodations.map((accommodation) => (
+              <li key={accommodation.id}>
+                <div className="grid-cols-2">
+                  <button className="my-4 mx-4 items-center justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <div className="border-2 rounded-lg p-6 bg-transparent shadow-md">
+                      <ul className="list-none">
+                        <li className="mt-4">
+                          <span className="font-semibold">NAME:</span>{" "}
+                          {accommodation.name}
+                        </li>
+                        <li className="mt-4">
+                          <span className="font-semibold">DESCRIPTION:</span>{" "}
+                          {accommodation.description}
+                        </li>
+                        <li className="mt-4">
+                          <span className="font-semibold">PRICE:</span>{" "}
+                          {accommodation.price}
+                        </li>
+                        <li className="mt-4">
+                          <span className="font-semibold">LOCATION:</span>{" "}
+                          {accommodation.location}
+                        </li>
+                        <li className="mt-4">
+                          <span className="font-semibold">CAPACITY:</span>{" "}
+                          {accommodation.capacity}
+                        </li>
+                      </ul>
+                    </div>
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
