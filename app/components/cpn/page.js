@@ -2,23 +2,22 @@
 import React, { useState, useEffect } from "react";
 
 const images = [
-  "https://www.holidify.com/images/cmsuploads/compressed/attr_122072_20190803143736.jpg",
-  "https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Parliament-Thimphu-Bhutan.jpg",
-  "/dzong/a.jpg",
-  "/dzong/B$.jpg",
-  "/dzong/BC.jpg",
-  "/dzong/BP.jpg",
-  "/dzong/CM.jpg",
-  "/dzong/D,jpg",
-  "/dzong/DEO.jpg",
-  "/dzong/Gangtey.jpg",
-  "/dzong/H.jpg",
-  "/dzong/K.jpg",
-  "/dzong/M.jpg",
-  "/dzong/PD.jpg",
-  "/dzong/TD.jpg",
-  "/dzong/WD.jpg",
-];
+    'https://www.holidify.com/images/cmsuploads/compressed/attr_122072_20190803143736.jpg',
+    'https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Parliament-Thimphu-Bhutan.jpg',
+    '/dzong/a.jpg',
+    '/dzong/B$.jpg',
+    '/dzong/BC.jpg',
+    '/dzong/BP.jpg',
+    '/dzong/D,jpg',
+    '/dzong/DEO.jpg',
+    '/dzong/H.jpg',
+    '/dzong/K.jpg',
+    '/dzong/PD.jpg',
+    '/dzong/TD.jpg',
+    '/dzong/WD.jpg'
+
+]
+
 
 const Background = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -46,39 +45,91 @@ const Background = () => {
         <button className="w-16 h-7 bg-white mt-1 ml-44 text-black">T</button>
       </div>
 
-      <div className="container mx-auto text-left text-white py-16">
-        <div className="flex justify-between pt-6">
-          <div className="w-1/2 ">
-            <h1 className="text-5xl font-medium text-green-950">
-              Welcome to My Agency
-            </h1>
-            <p className="text-xl mb-10 text-green-950">Explore Bhutan.</p>
-          </div>
+        <div className="container mx-auto text-left text-white py-16">
+            <div className="flex justify-between pt-6">
+                <div className="w-1/2 ">
+                    <h1 className="text-5xl font-medium text-white px-6">Welcome to My Agency</h1>
+                    <p className="text-xl mb-10 text-white px-6">Explore Bhutan.</p>
+                </div>
 
-          <div>
-            <a
-              href="/pages/login"
-              className="bg-green-950 text-white py-4 px-12 rounded-full hover:bg-green-800"
-            >
-              Let's Go
-            </a>
-          </div>
-
-          {/* <div className="w-1/2 pl-16">
+                <div>
+                    <a href="#" className="bg-green-950 text-white py-4 px-12 rounded-full hover:bg-green-800 mx-5">Let's Go</a>
+                </div>
+                
+                {/* <div className="w-1/2 pl-16">
                     <img src="https://source.unsplash.com/random?ux" className="h-64 w-full object-cover rounded-xl" alt="Layout Image" />
                 </div> */}
+            </div>
         </div>
-      </div>
+        
+        <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-15 backdrop-invert bg-green-950/30 justify-evenly grid-cols-2 flex">
+  <div className="overflow-y-scroll h-full py-6 text-white text-2xl" style={{ scrollbarWidth: 'none' }}>
+    <style jsx>{`
+      .scroll-container {
+        counter-reset: item;
+      }
 
-      <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-10 backdrop-invert bg-white/30 justify-between overflow-x-scroll flex ">
-        <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-auto flex">
-          <img src="/hotel/AP.jpg" className="mr-4" />
-          <img src="/hotel/LM.jpg" className="mr-4" />
-          <img src="/hotel/PK.jpg" className="mr-4" />
-          <img src="/hotel/SS.jpg" className="mr-4" />
-          <img src="/hotel/UP.jpg" className="mr-4" />
-          <p className="absolute text-black text-2xl font-semibold">Hotels</p>
-        </div>
+      .scroll-container p {
+        counter-increment: item;
+        display: flex; /* Added to align content */
+        align-items: center; /* Added to align content */
+      }
+
+      .scroll-container p::before {
+        content: counter(item) ".";
+        font-size: 0.5em; /* Adjust size of serial number */
+        margin-right: 0.5em; /* Adjust spacing between serial number and text */
+      }
+
+      .scroll-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar */
+      }
+
+      /* Style for enlarging text on hover */
+      .scroll-container p:hover {
+        transform: scale(1.1); /* Enlarge by 10% on hover */
+        transition: transform 0.2s ease; /* Add transition effect */
+        color: #005C29; /* Change hover color to green */
+      }
+    `}</style>
+    <div className="scroll-container px-3">
+    <p><a href="/page/hotels" className="border-y w-52 my-5">Hotels</a></p>
+    <p><a href="/page/cars" className="border-y w-52 my-5">Cars</a></p>
+    <p><a href="/page/handicraft" className="border-y w-52 my-5">Handicraft</a></p>
+    <p><a href="/page/wildlife" className="border-y w-52 my-5">Wild Life</a></p>
+    <p><a href="/page/adventure" className="border-y w-52 my-5">Adventure</a></p>
+    </div>
+  </div>
+
+
+  
+  <div className=" w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30 ">  
+     <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
+        <p className="text-sm scroll-container text-white hover:text-green-950 ">
+            About Us
+        </p>
+        <p className="text-sm scroll-container text-white hover:text-green-950 ">
+            Contact Us
+        </p>
+        <p className="text-sm scroll-container text-white hover:text-green-950 ">
+            Review
+        </p>
+
+     </div>       
+</div>
+
+</div>
+        {/* <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-10 backdrop-invert bg-white/30 justify-between overflow-x-scroll flex ">
+            <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-auto flex">            
+               
+                <img src='/hotel/AP.jpg' className="mr-4"/>
+                <img src='/hotel/LM.jpg' className="mr-4"/>  
+                <img src='/hotel/PK.jpg' className="mr-4"/>  
+                <img src='/hotel/SS.jpg' className="mr-4"/>  
+                <img src='/hotel/UP.jpg' className="mr-4"/> 
+                <p className="absolute text-black text-2xl font-semibold">Hotels</p>
+ 
+            </div>
 
         <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-scroll flex ">
           <img src="/car/C.jpg" className="mr-4" />
@@ -105,15 +156,17 @@ const Background = () => {
           <img src="/wildlife/.jpg" className="mr-4" />
         </div>
 
-        <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-scroll flex ">
-          <img src="/adventure/.jpg" className="mr-4" />
-          <img src="/adventure/.jpg" className="mr-4" />
-          <img src="/adventure/.jpg" className="mr-4" />
-          <img src="/adventure/.jpg" className="mr-4" />
-          <img src="/adventure/.jpg" className="mr-4" />
-        </div>
-      </div>
-    </div>
+            <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-scroll flex "> 
+                <img src='/adventure/.jpg' className="mr-4"/>
+                <img src='/adventure/.jpg' className="mr-4"/>
+                <img src='/adventure/.jpg' className="mr-4"/>
+                <img src='/adventure/.jpg' className="mr-4"/>
+                <img src='/adventure/.jpg' className="mr-4"/>
+            </div>
+
+        </div> */}
+
+</div>
   );
 };
 
