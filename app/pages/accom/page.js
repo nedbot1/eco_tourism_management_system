@@ -1,62 +1,64 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Accommodation() {
   const [accommodations, setAccommodations] = useState([]);
+  const [selectedAccommodations, setSelectedAccommodations] = useState([]);
 
-  const fetchAccommodations = async () => {
-    try {
-      const response = await fetch("/api/accom", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  useEffect(() => {
+    const fetchAccommodations = async () => {
+      try {
+        const response = await fetch("/api/accom", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch accommodations");
+        if (!response.ok) {
+          throw new Error("Failed to fetch accommodations");
+        }
+
+        const data = await response.json();
+        setAccommodations(data.accom);
+      } catch (error) {
+        console.error("Error fetching accommodations:", error);
       }
-
-      const data = await response.json();
-      console.log("Data from API:", data);
-
-      if (Array.isArray(data.accmo)) {
-        setAccommodations(data.accmo);
-      } else {
-        throw new Error("Accommodations data is not an array");
-      }
-    } catch (error) {
-      console.error("Error fetching accommodations:", error);
+    };
+    fetchAccommodations();
+  }, []);
+  const handleCheckboxChange = (id) => {
+    const isSelected = selectedAccommodations.includes(id);
+    if (isSelected) {
+      setSelectedAccommodations(
+        selectedAccommodations.filter((accId) => accId !== id)
+      );
+    } else {
+      setSelectedAccommodations([...selectedAccommodations, id]);
     }
   };
 
-  return (
-    <div>
-      <div className="my-auto flex justify-center space-x-4">
-        <div className="max-w-md w-full mt-5">
-          <button
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            type="button"
-            onClick={fetchAccommodations}
-          >
-            ACCOMMODATIONS
-          </button>
-        </div>
-      </div>
+  // Calculate total amount based on selected accommodations
+  const totalAmount = selectedAccommodations.reduce((acc, accId) => {
+    const accommodation = accommodations.find((acc) => acc.id === accId);
+    return acc + (accommodation ? accommodation.price : 0);
+  }, 0);
 
-      {/* Display accommodations */}
-      {accommodations.length > 0 && (
-        <div className="text-white mt-4">
-          <ul>
-            {accommodations.map((accommodation) => (
-              <li key={accommodation.id}>
-                <div className="grid-cols-2">
-                  <button className="my-4 mx-4 items-center justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    <div className="border-2 rounded-lg p-6 bg-transparent shadow-md">
+  return (
+    <>
+      <div className="bg-white">
+        <div className="text-center text-black">YOUR ACCOMMODATION OPTIONS</div>
+        <div className="p-4 justify-center ">
+          {accommodations.length > 0 && (
+            <div className="text-white mt-4">
+              <ul className="flex overflow-x-auto">
+                {accommodations.map((accommodation) => (
+                  <div key={accommodation.id} className="flex-shrink-0 m-4">
+                    <div className="border-2 rounded-lg p-6 bg-blue-500 shadow-md">
                       <ul className="list-none">
                         <li className="mt-4">
-                          <span className="font-semibold">NAME:</span>{" "}
+                          <span className="font-semibold">TITLE:</span>{" "}
                           {accommodation.name}
                         </li>
                         <li className="mt-4">
@@ -76,14 +78,24 @@ export default function Accommodation() {
                           {accommodation.capacity}
                         </li>
                       </ul>
+                      <label className="block mt-4">
+                        <input
+                          type="checkbox"
+                          onChange={() =>
+                            handleCheckboxChange(accommodation.id)
+                          }
+                          className="form-checkbox h-5 w-5 text-blue-600"
+                        />
+                        <span className="ml-2">Select Package</span>
+                      </label>
                     </div>
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
+                  </div>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 }

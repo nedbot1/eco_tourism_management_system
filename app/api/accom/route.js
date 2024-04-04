@@ -1,7 +1,7 @@
 import knex from "@/database";
 export async function GET() {
-  const accmo = await knex("accommodations").select("*");
-  return new Response(JSON.stringify({ accmo }), {
+  const accom = await knex("accommodations").select("*");
+  return new Response(JSON.stringify({ accom }), {
     status: 200,
   });
 }
