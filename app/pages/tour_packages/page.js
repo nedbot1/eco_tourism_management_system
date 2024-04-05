@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function TourPackages() {
+export default function TourPackages({ TPAmount, setTPAmount }) {
   const [tourPackages, setTourPackages] = useState([]);
   const [selectedPackages, setSelectedPackages] = useState([]);
 
@@ -39,10 +39,11 @@ export default function TourPackages() {
     }
   };
 
-  const totalAmount = selectedPackages.reduce((acc, pkgId) => {
+  const Amount = selectedPackages.reduce((acc, pkgId) => {
     const pkg = tourPackages.find((pkg) => pkg.id === pkgId);
-    return acc + (pkg ? pkg.price : 0);
+    return Number(acc) + Number(pkg ? pkg.price : 0);
   }, 0);
+  setTPAmount(Amount);
 
   return (
     <>
@@ -76,7 +77,9 @@ export default function TourPackages() {
                       </ul>
                       <label className="block mt-4">
                         <input
-                          type="checkbox"
+                          type="radio"
+                          name="selectedPackage"
+                          value={tourPackage.id}
                           onChange={() => handleCheckboxChange(tourPackage.id)}
                           className="form-checkbox h-5 w-5 text-blue-600"
                         />
@@ -89,31 +92,13 @@ export default function TourPackages() {
             </div>
           )}
         </div>
-        <div className="text-center text-black mt-4">
+        <div className="text-end mr-10 text-black mt-4">
           <div className="bg-gray-200 p-4 rounded-lg inline-block">
-            <span className="font-semibold">Total Amount:</span>{" "}
-            <span className="text-blue-600">{totalAmount}</span>
+            <span className="font-semibold">Amount:</span>{" "}
+            <span className="text-blue-600">{TPAmount}</span>
           </div>
         </div>
       </div>
     </>
   );
 }
-
-// {accommodation.name}
-// </li>
-// <li className="mt-4">
-//   <span className="font-semibold">DESCRIPTION:</span>{" "}
-//   {accommodation.description}
-// </li>
-// <li className="mt-4">
-//   <span className="font-semibold">PRICE:</span>{" "}
-//   {accommodation.price}
-// </li>
-// <li className="mt-4">
-//   <span className="font-semibold">LOCATION:</span>{" "}
-//   {accommodation.location}
-// </li>
-// <li className="mt-4">
-//   <span className="font-semibold">CAPACITY:</span>{" "}
-//   {accommodation.capacity}

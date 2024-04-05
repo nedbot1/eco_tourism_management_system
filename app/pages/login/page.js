@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import { UserContext } from "@/app/state/user-context";
 
 const Login = () => {
   const router = useRouter();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+  const { setUser } = useContext(UserContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,12 +25,16 @@ const Login = () => {
           password: password,
         }),
       });
-
       if (!response.ok) {
         throw new Error("Login failed");
+      } else {
+        const { data } = await response.json();
+        if (!data) {
+          throw new Error("Login failed");
+        }
+        setUser(data);
+        router.push("/pages/dashboard");
       }
-
-      router.push("/pages/dashboard");
     } catch (error) {
       setLoginError("Invalid username or password");
       console.error("Error:", error);
