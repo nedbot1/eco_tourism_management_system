@@ -35,12 +35,14 @@ const Background = () => {
       className="h-screen bg-cover bg-center fixed top-0 left-0 w-full"
       style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
     >
-      <div className="flex justify-center h-10 w-full">
-        <button className="w-7 h-7 mt-1 bg-white mr-44 text-black">S</button>
-        <t className="mt-2 pl-11 pr-4">home</t>
-        <t className="mt-2 pr-4">home</t>
-        <t className="mt-2 pr-11">home</t>
-        <button className="w-16 h-7 bg-white mt-1 ml-44 text-black">T</button>
+      <div className="flex justify-center h-12 backdrop-opacity-15 backdrop-invert bg-green-950/30 w-full">
+        <button className="h-10 w-10 mt-1 mr-44 ">
+        <img src='/buttons/search.jpg' className="backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950"/>
+        </button>
+        <a className="mt-2 pl-11 pr-4">home</a>
+        <a className="mt-2 pr-4">home</a>
+        <a className="mt-2 pr-11">home</a>
+        <a href="pages/dashboard" className="w-20 h-9 pt-1 text-center mt-1 ml-44 rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950">Schedule</a>
       </div>
 
       <div className="container mx-auto text-left text-white py-16">
@@ -55,7 +57,7 @@ const Background = () => {
           <div>
             <a
               href="/pages/login"
-              className="bg-green-950 text-white py-4 px-12 rounded-full hover:bg-green-800 mx-5"
+              className="bg-green-950 text-white py-4 px-12 rounded-full backdrop-invert bg-green-950/30 hover:bg-green-950 mx-5"
             >
               Let's Go
             </a>
