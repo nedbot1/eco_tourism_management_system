@@ -2,7 +2,13 @@
 
 import { useState, useEffect } from "react";
 
-export default function Accommodation() {
+export default function Accommodation({
+  ACCAmount,
+  totalAmount,
+  TPAmount,
+  setACCAmount,
+  setTotalAmount,
+}) {
   const [accommodations, setAccommodations] = useState([]);
   const [selectedAccommodations, setSelectedAccommodations] = useState([]);
 
@@ -40,14 +46,17 @@ export default function Accommodation() {
   };
 
   // Calculate total amount based on selected accommodations
-  const totalAmount = selectedAccommodations.reduce((acc, accId) => {
+  const Amount = selectedAccommodations.reduce((acc, accId) => {
     const accommodation = accommodations.find((acc) => acc.id === accId);
-    return acc + (accommodation ? accommodation.price : 0);
+    return Number(acc) + Number(accommodation ? accommodation.price : 0);
   }, 0);
+  setACCAmount(Amount);
+
+  setTotalAmount(TPAmount + ACCAmount);
 
   return (
     <>
-      <div className="bg-white">
+      <div className="bg-white pb-4">
         <div className="text-center text-black">YOUR ACCOMMODATION OPTIONS</div>
         <div className="p-4 justify-center ">
           {accommodations.length > 0 && (
@@ -94,6 +103,21 @@ export default function Accommodation() {
               </ul>
             </div>
           )}
+        </div>
+        <div className="text-end text-black mt-4 mr-10">
+          <div className="bg-gray-200 p-4 rounded-lg inline-block">
+            <span className="font-semibold">Amount:</span>{" "}
+            <span className="text-blue-600">{ACCAmount}</span>
+          </div>
+        </div>
+        <div className="text-center text-black mt-10 space-x-4">
+          <div className="bg-gray-200 p-4 rounded-lg inline-block">
+            <span className="font-semibold">Total Amount:</span>{" "}
+            <span className="text-blue-600">{totalAmount}</span>
+          </div>
+          <button className="bg-gray-200 p-4 rounded-lg inline-block">
+            BOOK
+          </button>
         </div>
       </div>
     </>
