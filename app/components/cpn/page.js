@@ -129,7 +129,7 @@ const Background = () => {
               </a>
             </p>
           </div>
-        </div>
+         </div>
 
         <div className=" w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30 ">
           <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
