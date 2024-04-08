@@ -1,18 +1,19 @@
 "use client";
 import { UserContext } from "@/app/state/user-context";
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const router = useRouter();
+
   // const { user } = useContext(UserContext);
   const user = {
     user_name: "Guest",
     email: "guest@example.com",
   };
 
-  const currentUser = user || dummyUser;
-
   return (
-    <div className="bg-cyan-950 text-white p-4 rounded-b-lg">
+    <div className="backdrop-opacity-15 backdrop-invert bg-rgb(122 155 152) text-white p-4 rounded-b-lg fixed top-0 w-full">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <span className="font-bold">Welcome, {user.user_name}</span>

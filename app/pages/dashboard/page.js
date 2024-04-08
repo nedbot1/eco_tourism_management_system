@@ -10,7 +10,16 @@ export default function Dashboard() {
   const [ACCAmount, setACCAmount] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
   return (
-    <div>
+    <div
+      className="bg-image pt-5"
+      style={{
+        backgroundImage: `url('https://photopedia.in/wp-content/uploads/2017/12/wide-angle.jpg')`,
+        backgroundSize: "cover",
+        minHeight: "100vh",
+        backgroundColor: "#CBD5E0",
+        backgroundPosition: "center",
+      }}
+    >
       <Navbar />
       <TourPackages TPAmount={TPAmount} setTPAmount={setTPAmount} />
       <Accommodation
