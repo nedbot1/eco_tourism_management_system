@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 
 export default function TourPackages({ TPAmount, setTPAmount }) {
   const [tourPackages, setTourPackages] = useState([]);
-  const [selectedPackages, setSelectedPackages] = useState([]);
+  const [selectedPackage, setSelectedPackage] = useState(null);
+
+  useEffect(() => {
+    if (selectedPackage) setTPAmount(selectedPackage.price);
+  }, [selectedPackage]);
 
   useEffect(() => {
     const fetchTourPackages = async () => {
@@ -22,6 +26,7 @@ export default function TourPackages({ TPAmount, setTPAmount }) {
 
         const data = await response.json();
         setTourPackages(data.tour_packages);
+        console.log(data.tour_packages);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -30,33 +35,22 @@ export default function TourPackages({ TPAmount, setTPAmount }) {
     fetchTourPackages();
   }, []);
 
-  const handleCheckboxChange = (id) => {
-    const isSelected = selectedPackages.includes(id);
-    if (isSelected) {
-      setSelectedPackages(selectedPackages.filter((pkgId) => pkgId !== id));
-    } else {
-      setSelectedPackages([...selectedPackages, id]);
-    }
-  };
-
-  const Amount = selectedPackages.reduce((acc, pkgId) => {
-    const pkg = tourPackages.find((pkg) => pkg.id === pkgId);
-    return Number(acc) + Number(pkg ? pkg.price : 0);
-  }, 0);
-  setTPAmount(Amount);
-
   return (
     <>
-      <div className="bg-cyan-400 absolute"></div>
-      <div className="bg-white">
-        <div className="text-center text-black">YOUR PACKAGES OPTIONS</div>
-        <div className="p-4 justify-center ">
+      <div className="">
+        <div className="backdrop-opacity-15 backdrop-invert bg-green-950/30 text-center w-60 mx-auto font-mono font-bold text-black p-2 rounded-xl mt-14">
+          PACKAGES OPTIONS
+        </div>
+        <div className="justify-center ">
           {tourPackages.length > 0 && (
-            <div className="text-white mt-4">
-              <ul className="flex overflow-x-auto">
+            <div className="text-white ">
+              <ul
+                className="flex overflow-x-auto"
+                style={{ scrollbarWidth: "thin" }}
+              >
                 {tourPackages.map((tourPackage) => (
                   <div key={tourPackage.id} className="flex-shrink-0 m-4">
-                    <div className="border-2 rounded-lg p-6 bg-blue-500 shadow-md">
+                    <div className="border-2 rounded-lg p-6 backdrop-opacity-15 backdrop-invert bg-green-950/30 shadow-md  hover:bg-green-950">
                       <ul className="list-none">
                         <li className="mt-4">
                           <span className="font-semibold">TITLE:</span>{" "}
@@ -80,7 +74,7 @@ export default function TourPackages({ TPAmount, setTPAmount }) {
                           type="radio"
                           name="selectedPackage"
                           value={tourPackage.id}
-                          onChange={() => handleCheckboxChange(tourPackage.id)}
+                          onChange={() => setSelectedPackage(tourPackage)}
                           className="form-checkbox h-5 w-5 text-blue-600"
                         />
                         <span className="ml-2">Select Package</span>
@@ -92,7 +86,7 @@ export default function TourPackages({ TPAmount, setTPAmount }) {
             </div>
           )}
         </div>
-        <div className="text-end mr-10 text-black mt-4">
+        <div className="text-end mr-10 text-black mt-4 mb-4">
           <div className="bg-gray-200 p-4 rounded-lg inline-block">
             <span className="font-semibold">Amount:</span>{" "}
             <span className="text-blue-600">{TPAmount}</span>

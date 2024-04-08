@@ -10,7 +10,11 @@ export default function Accommodation({
   setTotalAmount,
 }) {
   const [accommodations, setAccommodations] = useState([]);
-  const [selectedAccommodations, setSelectedAccommodations] = useState([]);
+  const [selectedAccommodation, setSelectedAccommodation] = useState(null);
+
+  useEffect(() => {
+    if (selectedAccommodation) setACCAmount(selectedAccommodation.price);
+  }, [selectedAccommodation]);
 
   useEffect(() => {
     const fetchAccommodations = async () => {
@@ -34,37 +38,25 @@ export default function Accommodation({
     };
     fetchAccommodations();
   }, []);
-  const handleCheckboxChange = (id) => {
-    const isSelected = selectedAccommodations.includes(id);
-    if (isSelected) {
-      setSelectedAccommodations(
-        selectedAccommodations.filter((accId) => accId !== id)
-      );
-    } else {
-      setSelectedAccommodations([...selectedAccommodations, id]);
-    }
-  };
 
-  // Calculate total amount based on selected accommodations
-  const Amount = selectedAccommodations.reduce((acc, accId) => {
-    const accommodation = accommodations.find((acc) => acc.id === accId);
-    return Number(acc) + Number(accommodation ? accommodation.price : 0);
-  }, 0);
-  setACCAmount(Amount);
-
-  setTotalAmount(TPAmount + ACCAmount);
+  setTotalAmount(Number(TPAmount) + Number(ACCAmount));
 
   return (
     <>
-      <div className="bg-white pb-4">
-        <div className="text-center text-black">YOUR ACCOMMODATION OPTIONS</div>
+      <div className="bg-transparent border-t-2 pb-4">
+        <div className="mt-2 backdrop-opacity-15 backdrop-invert bg-green-950/30 text-center w-60 mx-auto font-mono font-bold text-black p-2 rounded-xl">
+          ACCOMMODATION OPTIONS
+        </div>
         <div className="p-4 justify-center ">
           {accommodations.length > 0 && (
             <div className="text-white mt-4">
-              <ul className="flex overflow-x-auto">
+              <ul
+                className="flex overflow-x-auto"
+                style={{ scrollbarWidth: "thin" }}
+              >
                 {accommodations.map((accommodation) => (
                   <div key={accommodation.id} className="flex-shrink-0 m-4">
-                    <div className="border-2 rounded-lg p-6 bg-blue-500 shadow-md">
+                    <div className="border-2 rounded-lg p-6 backdrop-opacity-15 backdrop-invert bg-green-950/30  hover:bg-green-950">
                       <ul className="list-none">
                         <li className="mt-4">
                           <span className="font-semibold">TITLE:</span>{" "}
@@ -89,9 +81,10 @@ export default function Accommodation({
                       </ul>
                       <label className="block mt-4">
                         <input
-                          type="checkbox"
+                          type="radio"
+                          name="selectedAccommodation"
                           onChange={() =>
-                            handleCheckboxChange(accommodation.id)
+                            setSelectedAccommodation(accommodation)
                           }
                           className="form-checkbox h-5 w-5 text-blue-600"
                         />
