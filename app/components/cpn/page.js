@@ -19,6 +19,28 @@ const images = [
 
 const Background = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showInput, setShowInput] = useState(false);
+
+  const [activeSection, setActiveSection] = useState("about");
+  const sections = {
+    about: {
+      title: "About Us",
+      content: "jhdbskjasf;SEJFW   [DJWKDAWEFDWOEJFW]",
+    },
+    contact: {
+      title: "Contact Us",
+      content: "17661088",
+    },
+    review: {
+      title: "Review",
+      content: "lorepsum",
+    },
+  };
+
+
+  const toggleInput = () => {
+    setShowInput(!showInput);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,13 +57,20 @@ const Background = () => {
       className="h-screen bg-cover bg-center fixed top-0 left-0 w-full"
       style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
     >
-      <div className="flex justify-center h-12 backdrop-opacity-15 backdrop-invert bg-green-950/30 w-full">
-        <button className="h-10 w-10 mt-1 mr-44 ">
-        <img src='/buttons/search.jpg' className="backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950"/>
-        </button>
-        <a className="mt-2 pl-11 pr-4">home</a>
-        <a className="mt-2 pr-4">home</a>
-        <a className="mt-2 pr-11">home</a>
+      <div className="flex justify-center h-12 backdrop-opacity-15 backdrop-invert bg-950/30 bg-green-950/30 w-full">
+      <div className="flex justify-center items-center">
+      <button className="h-10 w-10 mt-1 mr-44" onClick={toggleInput}>
+        <img src='/buttons/search.jpg' className="backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950" />
+      </button>
+      {showInput && (
+        <input
+          type="text"
+          placeholder="Enter your search"
+          className="border border-green-500 px-3 py-2 text-black"
+        />
+      )}
+    </div>
+       
         <a href="pages/dashboard" className="w-20 h-9 pt-1 text-center mt-1 ml-44 rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950">Schedule</a>
       </div>
 
@@ -131,19 +160,32 @@ const Background = () => {
           </div>
          </div>
 
-        <div className=" w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30 ">
-          <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
-            <p className="text-sm scroll-container text-white hover:text-green-950 ">
-              About Us
-            </p>
-            <p className="text-sm scroll-container text-white hover:text-green-950 ">
-              Contact Us
-            </p>
-            <p className="text-sm scroll-container text-white hover:text-green-950 ">
-              Review
-            </p>
+          <div className="w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30">
+            <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
+              {Object.keys(sections).map((sectionKey) => (
+                <p
+                  key={sectionKey}
+                  className={`text-sm scroll-container text-white hover:text-green-950 ${
+                    activeSection === sectionKey ? "text-green-950" : ""
+                  }`}
+                  onClick={() => setActiveSection(sectionKey)}
+                >
+                  {sections[sectionKey].title}
+                </p>
+              ))}
+           
+            <div className="h-38 bg-green-950/30 text-white p-4">
+              <p className="text-sm">{sections[activeSection].content}</p>
           </div>
         </div>
+
+
+
+
+
+
+
+
       </div>
       {/* <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-10 backdrop-invert bg-white/30 justify-between overflow-x-scroll flex ">
             <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-auto flex">            
