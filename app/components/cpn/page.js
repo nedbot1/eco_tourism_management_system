@@ -1,4 +1,5 @@
 // components/Background.js
+"use client";
 import React, { useState, useEffect } from "react";
 
 const images = [
@@ -36,7 +37,6 @@ const Background = () => {
       content: "lorepsum",
     },
   };
-
 
   const toggleInput = () => {
     setShowInput(!showInput);
@@ -161,34 +161,26 @@ const Background = () => {
           </div>
         </div>
 
-          <div className="w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30">
-            <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
-              {Object.keys(sections).map((sectionKey) => (
-                <p
-                  key={sectionKey}
-                  className={`text-sm scroll-container text-white hover:text-green-950 ${
-                    activeSection === sectionKey ? "text-green-950" : ""
-                  }`}
-                  onClick={() => setActiveSection(sectionKey)}
-                >
-                  {sections[sectionKey].title}
-                </p>
-              ))}
-           
+        <div className="w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30">
+          <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
+            {Object.keys(sections).map((sectionKey) => (
+              <p
+                key={sectionKey}
+                className={`text-sm scroll-container text-white hover:text-green-950 ${
+                  activeSection === sectionKey ? "text-green-950" : ""
+                }`}
+                onClick={() => setActiveSection(sectionKey)}
+              >
+                {sections[sectionKey].title}
+              </p>
+            ))}
+
             <div className="h-38 bg-green-950/30 text-white p-4">
               <p className="text-sm">{sections[activeSection].content}</p>
+            </div>
           </div>
         </div>
-
-
-
-
-
-
-
-
-      </div>
-      {/* <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-10 backdrop-invert bg-white/30 justify-between overflow-x-scroll flex ">
+        {/* <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-10 backdrop-invert bg-white/30 justify-between overflow-x-scroll flex ">
             <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-auto flex">            
                
                 <img src='/hotel/AP.jpg' className="mr-4"/>
@@ -234,6 +226,9 @@ const Background = () => {
             </div>
 
         </div> */}
+      </div>
+      <div />
+      <div />
     </div>
   );
 };

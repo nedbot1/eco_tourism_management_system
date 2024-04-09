@@ -1,10 +1,12 @@
 import knex from "@/database";
 
-export async function GET() {
-  const booking = await knex("bookings").select("*");
-  return new Response(JSON.stringify({ booking }), {
-    status: 200,
-  });
+export async function GET(request, { params }) {
+  const userId = params.id;
+  const { searchParams } = request.url;
+  const data = await knex("bookings")
+    .where("bookings.user_id", userId)
+    .select("*");
+  return Response.json({ data });
 }
 
 export async function POST(req, { params }) {
