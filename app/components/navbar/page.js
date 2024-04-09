@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 export default function Navbar() {
   const router = useRouter();
 
-  // const { user } = useContext(UserContext);
-  const user = {
-    user_name: "Guest",
-    email: "guest@example.com",
-  };
+  const { user } = useContext(UserContext);
+  // const user = {
+  //   user_name: "Guest",
+  //   email: "guest@example.com",
+  // };
 
   return (
     <div className="backdrop-opacity-15 backdrop-invert bg-rgb(122 155 152) text-white p-4 rounded-b-lg fixed top-0 w-full">

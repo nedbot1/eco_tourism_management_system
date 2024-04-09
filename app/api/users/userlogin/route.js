@@ -16,6 +16,7 @@ export async function POST(req) {
     if (isValidLogin)
       return Response.json({
         data: {
+          user_id: foundUser.user_id,
           user_name: foundUser.username,
           email: foundUser.email,
         },

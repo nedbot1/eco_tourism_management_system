@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "@/app/state/user-context";
+import { useRouter } from "next/navigation";
 
 export default function Accommodation({
   ACCAmount,
@@ -8,22 +10,51 @@ export default function Accommodation({
   TPAmount,
   setACCAmount,
   setTotalAmount,
+  packageId,
+  accommodationId,
+  setAccommodationId,
 }) {
+  const router = useRouter();
+  const { user } = useContext(UserContext);
   const [accommodations, setAccommodations] = useState([]);
   const [selectedAccommodation, setSelectedAccommodation] = useState(null);
+  // let userId = 1;
+  let userId = user.user_id;
 
   useEffect(() => {
     if (selectedAccommodation) setACCAmount(selectedAccommodation.price);
   }, [selectedAccommodation]);
+
+  async function book() {
+    if (!selectedAccommodation || !packageId) {
+      alert("Please select both a tour package and an accommodation.");
+      return;
+    }
+
+    const response = await fetch(`../api/booking/${userId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        packageId: packageId,
+        totalPrice: totalAmount,
+        accommodationId: accommodationId,
+      }),
+    });
+    if (!response.ok) {
+      alert("Failed to book. Please try again later.");
+      return;
+    }
+    alert("Booking confirmed");
+    // router.push("/pages/payment");
+  }
 
   useEffect(() => {
     const fetchAccommodations = async () => {
       try {
         const response = await fetch("/api/accom", {
           method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
         });
 
         if (!response.ok) {
@@ -55,7 +86,10 @@ export default function Accommodation({
                 style={{ scrollbarWidth: "thin" }}
               >
                 {accommodations.map((accommodation) => (
-                  <div key={accommodation.id} className="flex-shrink-0 m-4">
+                  <div
+                    key={accommodation.accommodation_id}
+                    className="flex-shrink-0 m-4"
+                  >
                     <div className="border-2 rounded-lg p-6 backdrop-opacity-15 backdrop-invert bg-green-950/30  hover:bg-green-950">
                       <ul className="list-none">
                         <li className="mt-4">
@@ -83,9 +117,10 @@ export default function Accommodation({
                         <input
                           type="radio"
                           name="selectedAccommodation"
-                          onChange={() =>
-                            setSelectedAccommodation(accommodation)
-                          }
+                          onChange={() => {
+                            setSelectedAccommodation(accommodation);
+                            setAccommodationId(accommodation.accommodation_id);
+                          }}
                           className="form-checkbox h-5 w-5 text-blue-600"
                         />
                         <span className="ml-2">Select Package</span>
@@ -108,7 +143,10 @@ export default function Accommodation({
             <span className="font-semibold">Total Amount:</span>{" "}
             <span className="text-blue-600">{totalAmount}</span>
           </div>
-          <button className="bg-gray-200 p-4 rounded-lg inline-block">
+          <button
+            onClick={() => book()}
+            className="bg-gray-200 p-4 rounded-lg inline-block"
+          >
             BOOK
           </button>
         </div>
