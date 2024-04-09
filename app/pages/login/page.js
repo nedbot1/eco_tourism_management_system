@@ -33,6 +33,7 @@ const Login = () => {
           throw new Error("Login failed");
         }
         setUser(data);
+        console.log("my data " + data);
         router.push("/pages/dashboard");
       }
     } catch (error) {

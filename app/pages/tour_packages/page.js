@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function TourPackages({ TPAmount, setTPAmount }) {
+export default function TourPackages({ TPAmount, setTPAmount, setPackageId }) {
   const [tourPackages, setTourPackages] = useState([]);
   const [selectedPackage, setSelectedPackage] = useState(null);
 
@@ -74,7 +74,10 @@ export default function TourPackages({ TPAmount, setTPAmount }) {
                           type="radio"
                           name="selectedPackage"
                           value={tourPackage.id}
-                          onChange={() => setSelectedPackage(tourPackage)}
+                          onChange={() => {
+                            setSelectedPackage(tourPackage);
+                            setPackageId(tourPackage.package_id);
+                          }}
                           className="form-checkbox h-5 w-5 text-blue-600"
                         />
                         <span className="ml-2">Select Package</span>
