@@ -26,7 +26,7 @@ const Background = () => {
   const sections = {
     about: {
       title: "About Us",
-      content: "jhdbskjasf;SEJFW   [DJWKDAWEFDWOEJFW]",
+      content: "Since 2018",
     },
     contact: {
       title: "Contact Us",
@@ -64,9 +64,7 @@ const Background = () => {
             className="backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950"
           />
         </button>
-        <a className="mt-2 pl-11 pr-4">home</a>
-        <a className="mt-2 pr-4">home</a>
-        <a className="mt-2 pr-11">home</a>
+
         <a
           href="pages/dashboard"
           className="w-20 h-9 pt-1 text-center mt-1 ml-44 rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950"
@@ -161,74 +159,36 @@ const Background = () => {
           </div>
         </div>
 
-        <div className="w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30">
-          <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
-            {Object.keys(sections).map((sectionKey) => (
-              <p
-                key={sectionKey}
-                className={`text-sm scroll-container text-white hover:text-green-950 ${
-                  activeSection === sectionKey ? "text-green-950" : ""
-                }`}
-                onClick={() => setActiveSection(sectionKey)}
-              >
-                {sections[sectionKey].title}
-              </p>
-            ))}
-
-            <div className="h-38 bg-green-950/30 text-white p-4">
+          <div className="w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30">
+            <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
+              {Object.keys(sections).map((sectionKey) => (
+                <p
+                  key={sectionKey}
+                  className={`text-sm scroll-container text-white hover:text-green-950 ${
+                    activeSection === sectionKey ? "text-green-950" : ""
+                  }`}
+                  onClick={() => setActiveSection(sectionKey)}
+                >
+                  {sections[sectionKey].title}
+                </p>
+              ))}
+           </div>
+            <div className="h-38 text-white p-4 text-center">
               <p className="text-sm">{sections[activeSection].content}</p>
             </div>
           </div>
-        </div>
-        {/* <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-10 backdrop-invert bg-white/30 justify-between overflow-x-scroll flex ">
-            <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-auto flex">            
-               
-                <img src='/hotel/AP.jpg' className="mr-4"/>
-                <img src='/hotel/LM.jpg' className="mr-4"/>  
-                <img src='/hotel/PK.jpg' className="mr-4"/>  
-                <img src='/hotel/SS.jpg' className="mr-4"/>  
-                <img src='/hotel/UP.jpg' className="mr-4"/> 
-                <p className="absolute text-black text-2xl font-semibold">Hotels</p>
- 
-            </div>
-
-        <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-scroll flex ">
-          <img src="/car/C.jpg" className="mr-4" />
-          <img src="/car/K.jpg" className="mr-4" />
-          <img src="/car/KS.jpg" className="mr-4" />
-          <img src="/car/P.jpg" className="mr-4" />
-          <img src="/car/R.jpg" className="mr-4" />
+        
         </div>
 
-        <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-scroll flex ">
-          <img src="/handicraft/B.jpg" className="mr-4" />
-          <img src="/handicraft/C.jpg" className="mr-4" />
-          <img src="/handicraft/D.jpg" className="mr-4" />
-          <img src="/handicraft/H.jpg" className="mr-4" />
-          <img src="/handicraft/M.jpg" className="mr-4" />
-          <img src="/handicraft/P.jpg" className="mr-4" />
-        </div>
 
-        <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-scroll flex ">
-          <img src="/wildlife/b.jpg" className="mr-4" />
-          <img src="/wildlife/C.jpg" className="mr-4" />
-          <img src="/wildlife/T.jpg" className="mr-4" />
-          <img src="/wildlife/W.jpg" className="mr-4" />
-          <img src="/wildlife/.jpg" className="mr-4" />
-        </div>
 
-            <div className="w-72 h-52 bg-white backdrop-opacity-10 backdrop-invert bg-white/30 overflow-x-scroll flex "> 
-                <img src='/adventure/.jpg' className="mr-4"/>
-                <img src='/adventure/.jpg' className="mr-4"/>
-                <img src='/adventure/.jpg' className="mr-4"/>
-                <img src='/adventure/.jpg' className="mr-4"/>
-                <img src='/adventure/.jpg' className="mr-4"/>
-            </div>
 
-        </div> */}
+
+
+
+
       </div>
-      <div />
-      <div />
+     
     </div>
   );
 };
