@@ -6,16 +6,16 @@ import Link from "next/link";
 export default function Navbar() {
   const router = useRouter();
 
-  // const { user } = useContext(UserContext);
-  const user = {
-    user_name: "Guest",
-    email: "guest@example.com",
-  };
+  const { user } = useContext(UserContext);
+  // const user = {
+  //   user_name: "Guest",
+  //   email: "guest@example.com",
+  // };
 
   return (
-    <div className="bg-green-950/30 text-white py-2 rounded-b-lg fixed top-0 w-full justify-between px-4 flex ">
+    <div className="bg-green-950/30 text-white py-4 rounded-b-lg fixed top-0 w-full justify-between px-4 flex ">
       <div>
-        <span className="font-bold">Welcome, {user.user_name}</span>
+        <span className="font-bold">{user.user_name}</span>
       </div>
       <div className="flex items-center mx-auto h-10 w-1/2 rounded-full bg-green-950/30 p-2 pl-4">
         <img
@@ -34,7 +34,15 @@ export default function Navbar() {
       <div className="flex justify-evenly space-x-2 mr-4">
         <div className="p-2">
           <Link
-            href="../pages/dashboard"
+            href="../components/cpn"
+            className="w-20 rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950 p-4"
+          >
+            Home
+          </Link>
+        </div>
+        <div className="p-2">
+          <Link
+            href="../pages/schedule"
             className="w-20 rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950 p-4"
           >
             Schedule
@@ -46,6 +54,14 @@ export default function Navbar() {
             className="w-20 rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950 p-4"
           >
             Book
+          </Link>
+        </div>
+        <div className="p-2">
+          <Link
+            href="../pages/login"
+            className="w-20 rounded-full backdrop-opacity-15 backdrop-invert bg-red-700 hover:bg-red-950 p-4"
+          >
+            logout
           </Link>
         </div>
       </div>

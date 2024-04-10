@@ -43,10 +43,19 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div
+      className="min-h-screen flex items-center justify-center bg-image py-12 px-4 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: `url('https://images.unsplash.com/photo-1608659377506-3b4fec4f7634?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+        backgroundSize: "cover",
+        minHeight: "100vh",
+        backgroundColor: "#CBD5E0",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-green-950">
             SIGN UP
           </h2>
           {signupError && (
@@ -55,7 +64,10 @@ const SignUp = () => {
             </p>
           )}
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSignUp}>
+        <form
+          className="mt-8 space-y-6 bg-transparent/15 p-16 rounded-xl"
+          onSubmit={handleSignUp}
+        >
           <div className="rounded-md shadow-sm space-y-6">
             <div>
               <label htmlFor="username" className="sr-only">
@@ -66,7 +78,7 @@ const SignUp = () => {
                 name="username"
                 type="text"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border-2 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-green-950/30 focus:z-10 sm:text-sm bg-transparent placeholder-gray-700"
                 placeholder="Username"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
@@ -81,7 +93,7 @@ const SignUp = () => {
                 name="email"
                 type="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border-2 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-green-950/30 focus:z-10 sm:text-sm bg-transparent placeholder-gray-700"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -96,7 +108,7 @@ const SignUp = () => {
                 name="password"
                 type="password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border-2 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-green-950/30 focus:z-10 sm:text-sm bg-transparent placeholder-gray-700"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -111,7 +123,7 @@ const SignUp = () => {
                 name="retypePassword"
                 type="password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border-2 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-green-950/30 focus:z-10 sm:text-sm bg-transparent placeholder-gray-700"
                 placeholder="Retype Password"
                 value={retypePassword}
                 onChange={(e) => setRetypePassword(e.target.value)}
@@ -122,13 +134,16 @@ const SignUp = () => {
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white  bg-green-950 hover:bg-green-950/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Sign Up
             </button>
-            <div className="text-center text-black flex align-middle justify-center">
+            <div className="text-center text-white mt-5 flex align-middle justify-center">
               <h1>
-                Already have an account? <a href="/pages/login">Login</a>
+                Already have an account?{" "}
+                <a className="underline" href="/pages/login">
+                  Login
+                </a>
               </h1>
             </div>
           </div>

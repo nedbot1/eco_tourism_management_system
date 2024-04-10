@@ -47,7 +47,7 @@ export default function Accommodation({
       return;
     }
     alert("Booking confirmed");
-    // router.push("/pages/payment");
+    router.push("/pages/schedule");
   }
 
   useEffect(() => {

@@ -4,8 +4,29 @@ export async function GET(request, { params }) {
   const userId = params.id;
   const { searchParams } = request.url;
   const data = await knex("bookings")
+    .join("users", "users.user_id", "=", "bookings.user_id")
+    .join(
+      "tour_packages",
+      "tour_packages.package_id",
+      "=",
+      "bookings.package_id"
+    )
+    .join(
+      "accommodations",
+      "accommodations.accommodation_id",
+      "=",
+      "bookings.accommodation_id"
+    )
     .where("bookings.user_id", userId)
-    .select("*");
+    .select(
+      "booking_date",
+      "total_price",
+      "status",
+      "users.username",
+      "tour_packages.title",
+      "accommodations.name"
+    );
+
   return Response.json({ data });
 }
 
