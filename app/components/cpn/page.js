@@ -1,6 +1,8 @@
 // components/Background.js
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "@/app/state/user-context";
+import Navbar from "@/app/components/navbar/page";
 
 const images = [
   "https://www.holidify.com/images/cmsuploads/compressed/attr_122072_20190803143736.jpg",
@@ -19,6 +21,7 @@ const images = [
 ];
 
 const Background = () => {
+  const { user } = useContext(UserContext);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showInput, setShowInput] = useState(false);
 
@@ -53,113 +56,118 @@ const Background = () => {
   }, []);
 
   return (
-    <div
-      className="h-screen bg-cover bg-center fixed top-0 left-0 w-full"
-      style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
-    >
-      <div className="flex justify-center h-12 backdrop-opacity-15 backdrop-invert bg-green-950/30 w-full">
-        <button className="h-10 w-10 mt-1 mr-44 ">
-          <img
-            src="/buttons/search.jpg"
-            className="backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950"
-          />
-        </button>
-
-        <a
-          href="pages/dashboard"
-          className="w-20 h-9 pt-1 text-center mt-1 ml-44 rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950"
-        >
-          Schedule
-        </a>
-      </div>
-
-      <div className="container mx-auto text-left text-white py-16">
-        <div className="flex justify-between pt-6">
-          <div className="w-1/2 ">
-            <h1 className="text-5xl font-medium text-white px-6">
-              Welcome to My Agency
-            </h1>
-            <p className="text-xl mb-10 text-white px-6">Explore Bhutan.</p>
+    <>
+      <div
+        className="h-screen bg-cover bg-center fixed top-0 left-0 w-full"
+        style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+      >
+        {!user ? null : (
+          <div className="">
+            <Navbar />
           </div>
-
-          <div>
-            <a
-              href="/pages/login"
-              className="bg-green-950 text-white py-4 px-12 rounded-full backdrop-invert bg-green-950/30 hover:bg-green-950 mx-5"
-            >
-              Let's Go
-            </a>
+        )}
+        {!user ? (
+          <div className="flex items-center mx-auto h-12 w-1/2 rounded-full my-2 bg-green-950/30 p-2 pl-4">
+            <img
+              src="/buttons/search.jpg"
+              className="backdrop-opacity-15 backdrop-inverth-8 w-8 mr-2"
+            />
+            <input
+              className=" border-none text-white focus:outline-none placeholder-white::placeholder
+              rounded-full
+              p-2 w-1/2
+              bg-transparent"
+              style={{ maxWidth: "100%" }} // Limiting the width of the input field
+              placeholder="Search..."
+            />
           </div>
+        ) : null}
 
-          {/* <div className="w-1/2 pl-16">
-                    <img src="https://source.unsplash.com/random?ux" className="h-64 w-full object-cover rounded-xl" alt="Layout Image" />
-                </div> */}
-        </div>
-      </div>
+        <div className="container mx-auto text-left text-white py-16">
+          <div className="flex justify-between pt-6">
+            <div className="w-1/2 ">
+              <h1 className="text-5xl font-medium text-white px-6">
+                Welcome to My Agency
+              </h1>
+              <p className="text-xl mb-10 text-white px-6">Explore Bhutan.</p>
+            </div>
 
-      <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-15 backdrop-invert bg-green-950/30 justify-evenly grid-cols-2 flex">
-        <div
-          className="overflow-y-scroll h-full py-6 text-white text-2xl"
-          style={{ scrollbarWidth: "none" }}
-        >
-          <style jsx>{`
-            .scroll-container {
-              counter-reset: item;
-            }
-
-            .scroll-container p {
-              counter-increment: item;
-              display: flex; /* Added to align content */
-              align-items: center; /* Added to align content */
-            }
-
-            .scroll-container p::before {
-              content: counter(item) ".";
-              font-size: 0.5em; /* Adjust size of serial number */
-              margin-right: 0.5em; /* Adjust spacing between serial number and text */
-            }
-
-            .scroll-container::-webkit-scrollbar {
-              display: none; /* Hide scrollbar */
-            }
-
-            /* Style for enlarging text on hover */
-            .scroll-container p:hover {
-              transform: scale(1.1); /* Enlarge by 10% on hover */
-              transition: transform 0.2s ease; /* Add transition effect */
-              color: #005c29; /* Change hover color to green */
-            }
-          `}</style>
-          <div className="scroll-container px-3">
-            <p>
-              <a href="/page/hotels" className="border-y w-52 my-5">
-                Hotels
-              </a>
-            </p>
-            <p>
-              <a href="/page/cars" className="border-y w-52 my-5">
-                Cars
-              </a>
-            </p>
-            <p>
-              <a href="/page/handicraft" className="border-y w-52 my-5">
-                Handicraft
-              </a>
-            </p>
-            <p>
-              <a href="/page/wildlife" className="border-y w-52 my-5">
-                Wild Life
-              </a>
-            </p>
-            <p>
-              <a href="/page/adventure" className="border-y w-52 my-5">
-                Adventure
-              </a>
-            </p>
+            {!user ? (
+              <div>
+                <a
+                  href="/pages/login"
+                  className="bg-green-950 text-white py-4 px-12 rounded-full backdrop-invert bg-green-950/30 hover:bg-green-950 mx-5"
+                >
+                  Let's Go
+                </a>
+              </div>
+            ) : null}
           </div>
         </div>
 
-          <div className="w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30">
+        <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-15 backdrop-invert bg-green-950/30 justify-evenly grid-cols-2 flex">
+          <div
+            className="overflow-y-scroll h-full py-6 text-white text-2xl"
+            style={{ scrollbarWidth: "none" }}
+          >
+            <style jsx>{`
+              .scroll-container {
+                counter-reset: item;
+              }
+
+              .scroll-container p {
+                counter-increment: item;
+                display: flex; /* Added to align content */
+                align-items: center; /* Added to align content */
+              }
+
+              .scroll-container p::before {
+                content: counter(item) ".";
+                font-size: 0.5em; /* Adjust size of serial number */
+                margin-right: 0.5em; /* Adjust spacing between serial number and text */
+              }
+
+              .scroll-container::-webkit-scrollbar {
+                display: none; /* Hide scrollbar */
+              }
+
+              /* Style for enlarging text on hover */
+              .scroll-container p:hover {
+                transform: scale(1.1); /* Enlarge by 10% on hover */
+                transition: transform 0.2s ease; /* Add transition effect */
+                color: #005c29; /* Change hover color to green */
+              }
+            `}</style>
+            <div className="scroll-container px-3">
+              <p>
+                <a href="/page/hotels" className="border-y w-52 my-5">
+                  Hotels
+                </a>
+              </p>
+              <p>
+                <a href="/page/cars" className="border-y w-52 my-5">
+                  Cars
+                </a>
+              </p>
+              <p>
+                <a href="/page/handicraft" className="border-y w-52 my-5">
+                  Handicraft
+                </a>
+              </p>
+              <p>
+                <a href="/page/wildlife" className="border-y w-52 my-5">
+                  Wild Life
+                </a>
+              </p>
+              <p>
+                <a href="/page/adventure" className="border-y w-52 my-5">
+                  Adventure
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div className="text-right w-72 h-52 backdrop-opacity-10 backdrop-invert bg-green-950/30">
             <div className="w-full h-14 backdrop-opacity-10 backdrop-invert bg-green-950/30 grid-cols-3 flex justify-evenly py-4">
               {Object.keys(sections).map((sectionKey) => (
                 <p
@@ -172,24 +180,14 @@ const Background = () => {
                   {sections[sectionKey].title}
                 </p>
               ))}
-           </div>
+            </div>
             <div className="h-38 text-white p-4 text-center">
               <p className="text-sm">{sections[activeSection].content}</p>
             </div>
           </div>
-        
         </div>
-
-
-
-
-
-
-
-
       </div>
-     
-    </div>
+    </>
   );
 };
 
