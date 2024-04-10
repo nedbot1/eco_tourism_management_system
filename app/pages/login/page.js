@@ -33,7 +33,7 @@ const Login = () => {
           throw new Error("Login failed");
         }
         setUser(data);
-        router.push("/pages/dashboard");
+        router.push("/components/cpn");
       }
     } catch (error) {
       setLoginError("Invalid username or password");
