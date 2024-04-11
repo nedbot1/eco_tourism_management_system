@@ -133,19 +133,19 @@ export default function Accommodation({
           )}
         </div>
         <div className="text-end text-black mt-4 mr-10">
-          <div className="bg-gray-200 p-4 rounded-lg inline-block">
+          <div className="bg-green-950 p-4 rounded-lg inline-block">
             <span className="font-semibold">Amount:</span>{" "}
-            <span className="text-blue-600">{ACCAmount}</span>
+            <span className="text-white">{ACCAmount}</span>
           </div>
         </div>
         <div className="text-center text-black mt-10 space-x-4">
-          <div className="bg-gray-200 p-4 rounded-lg inline-block">
+          <div className="bg-green-950/30 p-4 rounded-lg inline-block">
             <span className="font-semibold">Total Amount:</span>{" "}
-            <span className="text-blue-600">{totalAmount}</span>
+            <span className="text-white">{totalAmount}</span>
           </div>
           <button
             onClick={() => book()}
-            className="bg-gray-200 p-4 rounded-lg inline-block"
+            className="bg-green-950/30 hover:bg-green-950 w-40 p-4 rounded-lg inline-block"
           >
             BOOK
           </button>

@@ -104,9 +104,9 @@ const Background = () => {
           </div>
         </div>
 
-        <div className="space-x-2 w-screen h-52 backdrop-opacity-15 backdrop-invert bg-green-950/30 justify-evenly grid-cols-2 flex mb-0 fixed bottom-0">
+        <div className="space-x-2 w-screen h-52 backdrop-opacity-15 backdrop-invert bg-green-950/30 justify-evenly grid-cols-2 flex fixed bottom-0">
           <div
-            className="overflow-y-scroll h-full py-6 text-white text-2xl"
+            className="overflow-y-scroll h-full py-1 text-white text-2xl"
             style={{ scrollbarWidth: "none" }}
           >
             <style jsx>{`

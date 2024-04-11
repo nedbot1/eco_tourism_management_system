@@ -14,11 +14,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-green-950/30 text-white py-3 rounded-b-lg fixed top-0 w-full justify-between px-4 flex h-16">
+    <div className="bg-green-950/30 text-white fixed top-0 py-3 rounded-b-lg w-full justify-between px-6 flex h-16">
       <div>
         <span className="font-bold">{user.user_name}</span>
       </div>
-      <div className="flex items-center mx-auto h-10 w-1/2 rounded-full bg-green-950/30 p-2 pl-4">
+      {/* <div className="flex items-center mx-auto h-10 w-1/2 rounded-full bg-green-950/30 p-2 pl-4">
         <img
           src="/buttons/search.jpg"
           className="backdrop-opacity-15 backdrop-inverth-8 w-8 mr-2"
@@ -31,39 +31,41 @@ const Navbar = () => {
           style={{ maxWidth: "100%" }}
           placeholder="Search..."
         />
-      </div>
+      </div> */}
       <div className="flex justify-center items-center mr-4 relative text-center">
-        {/* Button for small screens */}
-        <button
-          className="lg:hidden w-20 h-8 rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950 "
-          onClick={handleDropdownToggle}
-        >
-          Menu
-        </button>
+        <div className="w-9 h-9 rounded-lg">
+          {" "}
+          <button
+            className=" bg-green-950/30 backdrop-opacity-15 backdrop-invert rounded-lg"
+            onClick={handleDropdownToggle}
+          >
+            <img className="lg:hidden w-9 h-9 rounded-lg" src="/h.png"></img>
+          </button>
+        </div>
         {/* Dropdown menu */}
         {isDropdownOpen && (
-          <div className="lg:hidden absolute top-full left-0 mt-6 bg-green-950/30 rounded-md shadow-lg">
+          <div className="lg:hidden absolute top-full mt-4  bg-green-950/30 rounded-md shadow-lg ">
             <Link
               href="../components/cpn"
-              className="block w-full p-2 hover:bg-950/30"
+              className="block w-full p-2 hover:bg-950"
             >
               Home
             </Link>
             <Link
               href="../pages/schedule"
-              className="block w-full p-2 hover:bg-gray-100"
+              className="block w-full p-2 hover:bg-950"
             >
               Schedule
             </Link>
             <Link
               href="../pages/dashboard"
-              className="block w-full p-2 hover:bg-gray-100"
+              className="block w-full p-2 hover:bg-950"
             >
               Book
             </Link>
             <Link
               href="../pages/login"
-              className="block w-full p-2 hover:bg-gray-100"
+              className="block w-full p-2 hover:bg-950"
             >
               Logout
             </Link>
@@ -89,11 +91,14 @@ const Navbar = () => {
           >
             Book
           </Link>
+
           <Link
             href="../pages/login"
-            className="w-20 rounded-full backdrop-opacity-15 pt-2 backdrop-invert bg-red-700 hover:bg-red-950 h-10"
+            className=" w-9 h-9 rounded-full backdrop-opacity-15  backdrop-invert"
           >
-            Logout
+            <button>
+              <img className="w-fit h-fit rounded-lg" src="/P.png"></img>
+            </button>
           </Link>
         </div>
       </div>
