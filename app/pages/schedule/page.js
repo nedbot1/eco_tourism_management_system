@@ -41,13 +41,12 @@ export default function Schedule() {
                 className="border-2 rounded-lg border-green-950/30 mt-2 backdrop-opacity-15 backdrop-invert bg-green-950/30  mx-auto p-2"
                 key={schedule.id}
               >
-                <h1>Name: {schedule.username}</h1>
                 <h1>Hotel: {schedule.name}</h1>
                 <h1>Tour Package: {schedule.title}</h1>
                 <h1>Booking Date: {schedule.booking_date}</h1>
                 <h1>Total Price: {schedule.total_price}</h1>
                 <h1>Status: {schedule.status}</h1>
-                <div className="text-center rounded-md backdrop-opacity-15 backdrop-invert bg-green-950/30 hover:bg-green-950 p-2 mt-2">
+                <div className="text-center rounded-md backdrop-opacity-15 backdrop-invert bg-green-950 hover:bg-green-950/30 p-2 mt-2">
                   <button>confirm payment</button>
                 </div>
               </div>
