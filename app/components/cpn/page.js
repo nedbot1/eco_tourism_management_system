@@ -84,7 +84,7 @@ const Background = () => {
           <div className="flex justify-between pt-6">
             <div className="w-1/2 ">
               <h1 className="text-5xl font-medium text-white px-6">
-                Welcome to My Agency
+                Welcome to T&C Eco Tourism Agent
               </h1>
               <p className="text-xl mb-10 md:text-xl text-white px-6">
                 Explore Bhutan.
@@ -104,7 +104,7 @@ const Background = () => {
           </div>
         </div>
 
-        <div className="space-x-2 px-4 mt-20 w-screen h-52 backdrop-opacity-15 backdrop-invert bg-green-950/30 justify-evenly grid-cols-2 flex">
+        <div className="space-x-2 w-screen h-52 backdrop-opacity-15 backdrop-invert bg-green-950/30 justify-evenly grid-cols-2 flex mb-0 fixed bottom-0">
           <div
             className="overflow-y-scroll h-full py-6 text-white text-2xl"
             style={{ scrollbarWidth: "none" }}
