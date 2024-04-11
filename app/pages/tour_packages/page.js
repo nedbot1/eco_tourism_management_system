@@ -90,9 +90,9 @@ export default function TourPackages({ TPAmount, setTPAmount, setPackageId }) {
           )}
         </div>
         <div className="text-end mr-10 text-black mt-4 mb-4">
-          <div className="bg-gray-200 p-4 rounded-lg inline-block">
+          <div className="bg-green-950/30 p-4 rounded-lg inline-block">
             <span className="font-semibold">Amount:</span>{" "}
-            <span className="text-blue-600">{TPAmount}</span>
+            <span className="text-white">{TPAmount}</span>
           </div>
         </div>
       </div>
