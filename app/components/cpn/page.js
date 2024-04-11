@@ -29,7 +29,8 @@ const Background = () => {
   const sections = {
     about: {
       title: "About Us",
-      content: "Since 2018",
+      content:
+        "At [Company Name], we're dedicated to redefining [industry/sector] through innovation and excellence. With a relentless focus on quality and customer satisfaction",
     },
     contact: {
       title: "Contact Us",
@@ -58,14 +59,10 @@ const Background = () => {
   return (
     <>
       <div
-        className="h-screen bg-cover bg-center fixed top-0 left-0 w-full"
+        className="h-screen bg-cover bg-center fixed w-full"
         style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
       >
-        {!user ? null : (
-          <div className="">
-            <Navbar />
-          </div>
-        )}
+        {!user ? null : <Navbar />}
         {!user ? (
           <div className="flex items-center mx-auto h-12 w-1/2 rounded-full my-2 bg-green-950/30 p-2 pl-4">
             <img
@@ -89,7 +86,9 @@ const Background = () => {
               <h1 className="text-5xl font-medium text-white px-6">
                 Welcome to My Agency
               </h1>
-              <p className="text-xl mb-10 text-white px-6">Explore Bhutan.</p>
+              <p className="text-xl mb-10 md:text-xl text-white px-6">
+                Explore Bhutan.
+              </p>
             </div>
 
             {!user ? (
@@ -117,25 +116,24 @@ const Background = () => {
 
               .scroll-container p {
                 counter-increment: item;
-                display: flex; /* Added to align content */
-                align-items: center; /* Added to align content */
+                display: flex;
+                align-items: center;
               }
 
               .scroll-container p::before {
                 content: counter(item) ".";
-                font-size: 0.5em; /* Adjust size of serial number */
-                margin-right: 0.5em; /* Adjust spacing between serial number and text */
+                font-size: 0.5em;
+                margin-right: 0.5em;
               }
 
               .scroll-container::-webkit-scrollbar {
-                display: none; /* Hide scrollbar */
+                display: none;
               }
 
-              /* Style for enlarging text on hover */
               .scroll-container p:hover {
-                transform: scale(1.1); /* Enlarge by 10% on hover */
-                transition: transform 0.2s ease; /* Add transition effect */
-                color: #005c29; /* Change hover color to green */
+                transform: scale(1.1);
+                transition: transform 0.2s ease;
+                color: #005c29;
               }
             `}</style>
             <div className="scroll-container px-3">
