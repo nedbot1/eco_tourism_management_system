@@ -5,19 +5,30 @@ import { UserContext } from "@/app/state/user-context";
 import Navbar from "@/app/components/navbar/page";
 
 const images = [
-  "https://www.holidify.com/images/cmsuploads/compressed/attr_122072_20190803143736.jpg",
-  "https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Parliament-Thimphu-Bhutan.jpg",
-  "/dzong/a.jpg",
-  "/dzong/B$.jpg",
-  "/dzong/BC.jpg",
+  "/dzong/MS.jpg",
   "/dzong/BP.jpg",
-  "/dzong/D,jpg",
-  "/dzong/DEO.jpg",
+  "/dzong/BS.jpg",
   "/dzong/H.jpg",
   "/dzong/K.jpg",
+  "/dzong/Deo.jpg",
+  "/dzong/DS.jpg",
+  "/dzong/PO.jpg",
   "/dzong/PD.jpg",
   "/dzong/TD.jpg",
   "/dzong/WD.jpg",
+  "/dzong/WS.jpg",
+  "/dzong/BV.jpg",
+  "/dzong/PG.jpg",
+  "/dzong/TG.jpg",
+  "/dzong/DA.jpg",
+  "/dzong/Z.jpg",
+  "/dzong/KS.jpg",
+  "/dzong/PS.jpg",
+  "/dzong/BC.jpg",
+  "/dzong/a.jpg",
+  "/dzong/L.jpg",
+  "/dzong/O.jpg",
+  "/dzong/V.jpg",
 ];
 
 const Background = () => {
@@ -51,7 +62,7 @@ const Background = () => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); // Change the interval time (in milliseconds) as needed
+    }, 3000); // Change the interval time (in milliseconds) as needed
 
     return () => clearInterval(interval);
   }, []);
@@ -83,10 +94,10 @@ const Background = () => {
         <div className="container mx-auto text-left text-white py-16">
           <div className="flex justify-between pt-6">
             <div className="w-1/2 ">
-              <h1 className="text-5xl font-medium text-white px-6">
+              <h1 className="font-sans text-5xl text-white px-6 animate-bounce">
                 Welcome to T&C Eco Tourism Agent
               </h1>
-              <p className="text-xl mb-10 md:text-xl text-white px-6">
+              <p className="font-sans font-bold text-xl mb-10 md:text-xl text-white px-6 animate-pulse">
                 Explore Bhutan.
               </p>
             </div>
