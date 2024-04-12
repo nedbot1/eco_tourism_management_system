@@ -45,11 +45,11 @@ const Login = () => {
     <div
       className="min-h-screen flex items-center justify-center bg-image py-12 px-4 sm:px-6 lg:px-8"
       style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1608659377506-3b4fec4f7634?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
-        backgroundSize: "cover",
+        backgroundImage: `url(/LSBG.jpg)`,
         minHeight: "100vh",
         backgroundColor: "#CBD5E0",
         backgroundPosition: "center",
+        backgroundSize: "cover",
       }}
     >
       <div className="max-w-md w-full space-y-8">
@@ -64,7 +64,7 @@ const Login = () => {
           )}
         </div>
         <form
-          className="mt-8 space-y-6 bg-transparent/15 p-16 rounded-xl"
+          className="mt-8 space-y-6 bg-transparent/30 p-16 rounded-xl"
           onSubmit={handleLogin}
         >
           <div className="rounded-md shadow-sm-space-y-px">
