@@ -1,17 +1,11 @@
-export default function wildlife() {
-  return (
-    <>
-      <div className="w-full h-full bg-white p-3">
-        <div className="w-full h-72 bg-green-950 hover:bg-green-950/75 py-5 flex justify-between px-5 rounded-xl">
-          <img src="/wildlife/B.jpg" className="ml-4 mr-4 h-60 w-60" />
-          <p className="text-3xl py-16 mx-4">Blue poppy</p>
-          <p className="content-center">
-            Amankora Paro Situated in Balakha village, 30 minutes from Paro
-            international airport, 24-suite Amankora - Paro retreat contrasts
-            rustic elements with contemporary design. Its architecture features
-            natural rammed-earth walls, gently sloping roofs and wood paneled
-            interiors.
-          </p>
+export default function wildlife(){
+    return(
+        <>
+    <div className="w-full h-full bg-white py-5 px-5">  
+        <div className="w-full h-72 bg-green-950 hover:bg-green-950/75 py-5 flex justify-between px-5 rounded-xl">  
+            <img src='/wildlife/B.jpg' className="ml-4 mr-4 h-60 w-60"/>
+            <p className="text-3xl py-16 mx-4">Blue poppy</p>
+            <p className="content-center">Amankora Paro Situated in Balakha village, 30 minutes from Paro international airport, 24-suite Amankora - Paro retreat contrasts rustic elements with contemporary design. Its architecture features natural rammed-earth walls, gently sloping roofs and wood paneled interiors.</p>
         </div>
         <div className="mt-5 w-full h-72 bg-green-950 hover:bg-green-950/75 py-5 flex justify-between px-5 rounded-xl">
           <img src="/wildlife/C.jpg" className="ml-4 mr-4 h-60 w-60" />

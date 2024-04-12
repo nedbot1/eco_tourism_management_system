@@ -1,17 +1,11 @@
-export default function handicraft() {
-  return (
-    <>
-      <div className="w-full h-full bg-white p-3">
-        <div className=" w-full h-72 bg-green-950 hover:bg-green-950/75 py-5 flex justify-between px-5 rounded-xl">
-          <img src="/handicraft/B.jpg" className="ml-4 mr-4 h-60 w-60" />
-          <p className="text-3xl py-16 mx-4">Bamboo Basket(Bangchung)</p>
-          <p className="content-center">
-            The Bangchung is a handwoven spherical-shaped bamboo container made
-            by artisans in Bhutan. Traditionally used as a plate, it is still
-            widely used by the people of Bhutan in the rural regions as lunch
-            boxes to carry cooked food (mainly rice and meat) for long journeys
-            or when they go out to work in the fields.
-          </p>
+export default function handicraft(){
+    return(
+        <>
+    <div className="w-full h-full bg-white py-5 px-5">  
+        <div className=" w-full h-72 bg-green-950 hover:bg-green-950/75 py-5 flex justify-between px-5 rounded-xl">  
+            <img src='/handicraft/B.jpg' className="ml-4 mr-4 h-60 w-60"/>
+            <p className="text-3xl py-16 mx-4">Bamboo Basket(Bangchung)</p>
+            <p className="content-center">The Bangchung is a handwoven spherical-shaped bamboo container made by artisans in Bhutan. Traditionally used as a plate, it is still widely used by the people of Bhutan in the rural regions as lunch boxes to carry cooked food (mainly rice and meat) for long journeys or when they go out to work in the fields.</p>
         </div>
         <div className="mt-5 w-full h-72 bg-green-950 hover:bg-green-950/75 py-5 flex justify-between px-5 rounded-xl">
           <img src="/handicraft/C.jpg" className="ml-4 mr-4 h-60 w-60" />
