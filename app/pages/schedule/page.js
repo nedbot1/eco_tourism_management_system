@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import Navbar from "@/app/components/navbar/page";
 import { UserContext } from "@/app/state/user-context";
 import { formatDistance } from "date-fns";
+import Link from "next/link";
 
 export default function Schedule() {
   const [schedules, setSchedules] = useState(["no shedule found"]);
@@ -48,6 +49,9 @@ export default function Schedule() {
                 <h1>Status: {schedule.status}</h1>
                 <div className="text-center rounded-md backdrop-opacity-15 backdrop-invert bg-green-950 hover:bg-green-950/30 p-2 mt-2">
                   <button>confirm payment</button>
+                </div>
+                <div className="text-center rounded-md backdrop-opacity-15 backdrop-invert bg-green-950 hover:bg-red-600 p-2 mt-2">
+                  <Link href="/pages/dashboard">cancle</Link>
                 </div>
               </div>
             </div>
