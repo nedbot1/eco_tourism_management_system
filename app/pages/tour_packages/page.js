@@ -50,23 +50,23 @@ export default function TourPackages({ TPAmount, setTPAmount, setPackageId }) {
               >
                 {tourPackages.map((tourPackage) => (
                   <div key={tourPackage.id} className="flex-shrink-0 m-4">
-                    <div className="border-2 rounded-lg p-6 backdrop-opacity-15 backdrop-invert bg-green-950/30 shadow-md  hover:bg-green-950">
+                    <div className="border-2 rounded-lg p-6 backdrop-opacity-15 backdrop-invert bg-green-950/30 shadow-md w-96 h-80 text-center hover:bg-green-950">
                       <ul className="list-none">
                         <li className="mt-4">
                           <span className="font-semibold">TITLE:</span>{" "}
                           {tourPackage.title}
                         </li>
                         <li className="mt-4">
-                          <span className="font-semibold">DESCRIPTION:</span>{" "}
+                          <span className="font-semibold"></span>{" "}
                           {tourPackage.description}
                         </li>
                         <li className="mt-4">
                           <span className="font-semibold">PRICE:</span>{" "}
-                          {tourPackage.price}
+                          {tourPackage.price}/Nu
                         </li>
                         <li className="mt-4">
                           <span className="font-semibold">DURATION:</span>{" "}
-                          {tourPackage.duration}
+                          {tourPackage.duration} days
                         </li>
                       </ul>
                       <label className="block mt-4">
@@ -92,7 +92,7 @@ export default function TourPackages({ TPAmount, setTPAmount, setPackageId }) {
         <div className="text-end mr-10 text-black mt-4 mb-4">
           <div className="bg-green-950/30 p-4 rounded-lg inline-block">
             <span className="font-semibold">Amount:</span>{" "}
-            <span className="text-white">{TPAmount}</span>
+            <span className="text-white">{TPAmount}/Nu</span>
           </div>
         </div>
       </div>

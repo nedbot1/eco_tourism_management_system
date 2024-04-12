@@ -36,6 +36,7 @@ const SignUp = () => {
       }
 
       router.push("/pages/login");
+      alert("Sign up successful");
     } catch (error) {
       setSignupError("Sign up failed. Please try again.");
       console.error("Error:", error);

@@ -135,13 +135,13 @@ export default function Accommodation({
         <div className="text-end text-black mt-4 mr-10">
           <div className="bg-green-950 p-4 rounded-lg inline-block">
             <span className="font-semibold">Amount:</span>{" "}
-            <span className="text-white">{ACCAmount}</span>
+            <span className="text-white">{ACCAmount}/Nu</span>
           </div>
         </div>
         <div className="text-center text-black mt-10 space-x-4">
           <div className="bg-green-950/30 p-4 rounded-lg inline-block">
             <span className="font-semibold">Total Amount:</span>{" "}
-            <span className="text-white">{totalAmount}</span>
+            <span className="text-white">{totalAmount}/Nu</span>
           </div>
           <button
             onClick={() => book()}
